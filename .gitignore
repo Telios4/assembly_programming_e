@@ -1,2 +1,16 @@
 *.o
 a.out
+add1
+add2
+add3
+adc4
+sub1
+sub2
+sub3
+mul1
+mul2
+mul3
+div1
+div2
+div3
+01_immediate
