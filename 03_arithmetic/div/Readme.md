@@ -6,10 +6,36 @@ div1.asm flags result:
 5.Parity Flag remains o because the low byte has an odd number of 1s.
 6.Auxiliary carry Flag is Set to 1 in GDB, but it is undefined after DIV, so this value is not a meaningful result of the division.
 
+
+DIV leaves CF, OF, SF, ZF, AF and PF undefined, so the values below are what the CPU happened to leave, not meaningful results of the division.
+
+| Flag | Status | Why |
+|------|--------|-----|
+| **CF** | Cleared (0) | Undefined after DIV; the CPU left it at 0. |
+| **ZF** | Cleared (0) | Undefined after DIV. It happens to be 0, and the quotient 14 is also not zero. |
+| **SF** | Cleared (0) | Undefined after DIV. It happens to be 0, and bit 7 of the quotient `00001110b` is 0. |
+| **OF** | Cleared (0) | Undefined after DIV; the CPU left it at 0. |
+| **PF** | Cleared (0) | Undefined after DIV. It happens to be 0, and the quotient `00001110b` has three 1 bits (odd). |
+| **AF** | Set (1) | Undefined after DIV, so this value is not a meaningful result of the division. |
+
+---
+
 div2.asm flags result:
+
 1.Carry Flag is 0 (cleared) because DIV does not define CF, and the CPU left it at 0.
 2.Zero Flag is 0 (cleared) because DIV does not define ZF. It happens to be 0, and the quotient 166 is also not zero.
 3.Sign Flag is 0 (cleared) because DIV does not define SF. It happens to be 0, and bit 15 of the quotient 0000000010100110b is 0.
 4.Overflow Flag is 0 (cleared) because DIV does not define OF, and the CPU left it at 0.
 5.Parity Flag is 0 (cleared) because DIV does not define PF. It happens to be 0, and the low byte of the quotient 10100110b has four 1 bits (even), which would normally set PF, so it is not tied to the result.
 6.Auxiliary carry Flag is 1 (set) because DIV does not define AF, so this value is not a meaningful result of the division.
+
+DIV leaves CF, OF, SF, ZF, AF and PF undefined, so the values below are not meaningful results of the division.
+
+| Flag | Status | Why |
+|------|--------|-----|
+| **CF** | Cleared (0) | Undefined after DIV; the CPU left it at 0. |
+| **ZF** | Cleared (0) | Undefined after DIV. It happens to be 0, and the quotient 166 is also not zero. |
+| **SF** | Cleared (0) | Undefined after DIV. It happens to be 0, and bit 15 of the quotient is 0. |
+| **OF** | Cleared (0) | Undefined after DIV; the CPU left it at 0. |
+| **PF** | Cleared (0) | Undefined after DIV. The low byte of the quotient `10100110b` has four 1 bits (even), which would normally set PF, so it is not tied to the result. |
+| **AF** | Set (1) | Undefined after DIV, so this value is not a meaningful result of the division. |
