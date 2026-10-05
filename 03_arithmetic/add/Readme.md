@@ -5,3 +5,11 @@ add1.asm flags result:
 4.Overflow Flag is Set to 1 because 120 + 10 exceeds signed max (127).
 5.Parity Flag Set to 1 because the Low byte has an even number of 1 bits (two).
 6.Auxiliarycarry Flag is Set because there is a Carry from bit 3 to bit 4.
+
+add2.asm flags result:
+1.Carry Flag remains 0 because there is no carry out of bit 15 (the sum fits in 16 bits, 65535 or less).
+2.Zero Flag remains 0 because the result is not zero.
+3.Sign Flag remains 0 because Bit 15 of the result is 0.
+4.Overflow Flag remains 0 because the sum does not exceed the signed 16-bit maximum (32767).
+5.Parity Flag remains 0 because the low byte of the result has an odd number of 1 bits.
+6.Auxiliary carry Flag remains 0 because there is no carry from bit 3 to bit 4.

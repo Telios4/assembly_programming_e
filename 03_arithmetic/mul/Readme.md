@@ -5,3 +5,11 @@ mul1.asm flags result:
 4.Sign Flag is 0 (cleared) because MUL does not define SF. Bit 7 of the result 11111010b is actually 1, so SF does not follow the result here, which shows it is not meaningful after MUL.
 5.Parity Flag is 0 (cleared) because MUL does not define PF. The low byte 11111010b has six 1 bits (even), which would normally set PF, but PF is 0, so this value is not tied to the result.
 6.Auxiliary carry Flag is 0 (cleared) because MUL does not define AF, so this value is not a meaningful result of the multiplication.
+
+mul2.asm flags result:
+1.Carry Flag is Set to 1 because the upper half of the product (DX) is non-zero, so the product does not fit in 16 bits (AX) and spills into DX.
+2.Overflow Flag is Set to 1 for the same reason: MUL sets OF when the upper half of the product (DX) is non-zero.
+3.Zero Flag is 0 (cleared) because MUL does not define ZF. It happens to be 0, and the product is not zero.
+4.Sign Flag is 0 (cleared) because MUL does not define SF, so this value is not a meaningful result of the multiplication.
+5.Parity Flag is 0 (cleared) because MUL does not define PF, so this value is not a meaningful result of the multiplication.
+6.Auxiliary carry Flag is 0 (cleared) because MUL does not define AF, so this value is not a meaningful result of the multiplication.
